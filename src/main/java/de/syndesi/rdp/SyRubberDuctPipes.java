@@ -1,5 +1,6 @@
 package de.syndesi.rdp;
 
+import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -9,8 +10,9 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
-import de.syndesi.rdp.blocks.SyBlocks;
-//import de.syndesi.rdp.items.SyItems;
+import cpw.mods.fml.common.registry.GameRegistry;
+import de.syndesi.rdp.items.ItemPipeLayer;
+import de.syndesi.rdp.render.SyPipeRender;
 
 /*
  * Author: Sören Klein, Germany
@@ -37,7 +39,8 @@ public class SyRubberDuctPipes {
 		SyVariables.init(PreEvent);
 		SyCreativeTabs.init();
 		//SyCoItems.init();
-		SyBlocks.init();
+		GameRegistry.registerItem(new ItemPipeLayer(), "itempipelayer");
+		MinecraftForge.EVENT_BUS.register(new SyPipeRender());
 	}
 	
 	@EventHandler
